@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+:root {
+  --app-gray-border: rgb(62, 62, 62);
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -45,6 +49,7 @@ p, h1, h2, h3, h4 {
 }
 
 .grid {
+  border: 5px solid var(--app-gray-border);
   margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr;
@@ -54,6 +59,10 @@ p, h1, h2, h3, h4 {
   background-color: black;
   padding: 10px;
   position: relative; 
+}
+
+.no-select {
+  user-select: none;
 }
 
 .wins-counter {
@@ -70,12 +79,15 @@ p, h1, h2, h3, h4 {
   align-self: end; 
   justify-self: start; 
   background-color: rgb(19, 22, 31);
-  border: 5px solid rgb(62, 62, 62);
+  border: 5px solid var(--app-gray-border);
   width: 300px;
 }
 
 .enemy-icon {
-  justify-self: center;
+  justify-self: right;
+  border: 5px solid var(--app-gray-border);
+  width: 300px;
+  height: 280px;
 }
 
 ul {
@@ -145,16 +157,27 @@ footer {
 
 .attack-menu {
   background-color:rgb(19, 22, 31);
-  border: 5px solid rgb(62, 62, 62);
+  border: 5px solid var(--app-gray-border);
   width: 300px;
   ul {
     li {
       margin: 10px;
       padding: 5px;
-      background-color: rgb(56, 56, 56);
+      background-color: var(--app-gray-border);
       button {
         width: 100%;
       }
     }
+  }
+}
+
+.dialogue-box {
+  text-align: left;
+  width: 600px;
+  color: rgb(167, 167, 167);
+  background-color: rgb(15, 8, 8);
+  border: 5px solid rgb(72, 71, 71);
+  p {
+    padding: 10px;
   }
 }

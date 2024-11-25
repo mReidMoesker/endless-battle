@@ -9,7 +9,7 @@
     <title>Endless battles | Mathew Moesker</title>
     <link rel="icon" href="./assets/img/favicon.jpg" type="image/x-icon">
     
-    <!--This font looks like classic game console text-->
+    <!--This font looks like classic game console text, which works really well in this site's context-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -42,24 +42,29 @@
         <div class="enemy-icon">
           <img class="enemy-png">
         </div>
-        <div class="flex space">
+        <div class="flex space no-select">
           <div class="health-bar">
-            <h2 class="your-hp">Health points: 0</h2>
+            <h2 class="your-hp">HP: 100</h2>
           </div>
           <div class="enemy-health">
-            <h3 class="enemy-hp">Enemy health points: 0</h3>
+            <h3 class="enemy-hp">Enemy HP: 20</h3>
           </div>
         </div>
-        <div class="wins-counter">
+        <div class="wins-counter no-select">
           <p>Wins: 0</p>
         </div>
-        <div class="attack-menu">
-          <ul>
-            <li><button type="attack">Bash</button></li>
-            <li><button type="health-regen">Restoration</button></li>
-            <li><button type="defense">Guard</button></li>
-            <li><button type="run">End game</button></li>
-          </ul>
+        <div class="flex space">
+          <div class="attack-menu">
+            <ul>
+              <li><button type="attack">Bash</button></li>
+              <li><button type="health-regen">Restoration</button></li>
+              <li><button type="defense">Guard</button></li>
+              <li><button type="run">End game</button></li>
+            </ul>
+          </div>
+          <div class="dialogue-box no-select">
+            <p>PRESS SPACE</p>
+          </div>
         </div>
       </div>
     </main>
