@@ -34,25 +34,3 @@ h1, h2, h3, h4 {
 p, h1, h2, h3, h4 {
   overflow-wrap: break-word;
 }
-
-ul, ol  {
-  list-style: none;
-}
-
-a, i, figure, img, button,
-input[type=button], input[type=submit] {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
-}
-
-input, textarea, button, select {
-  font: inherit;
-  border-style: none;
-  outline-style: none;
-}
