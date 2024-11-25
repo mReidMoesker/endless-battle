@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Mathew Moesker">
     <meta name="description" content="Portfolio">
-    <meta name="keywords" content="html, css, javascript, portfolio, work">
+    <meta name="keywords" content="game, rpg, battle, turn-based, fight">
     <title>Endless battles | Mathew Moesker</title>
     <link rel="icon" href="./assets/img/favicon.jpg" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!--This font looks like classic game console text-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,24 +28,30 @@
   <body>
     <header>
       <div class="header flex">
-        <div class="header-content">
-          <button class="start-button">START</button>
-          <button class="reset-button">RESET</button>
+        <div class="header-content space">
+          <div class="center flex">
+            <button class="power-button"><i class="fa-solid fa-power-off" style="color: #000"></i></button>
+            <button class="reset"><i class="fa-solid fa-repeat" style="color: #000;"></i></button>
+            <h1>GameMaster 5000</h1>
+          </div>
         </div>
       </div>
     </header>
     <main>
-      <div class="container flex">
-        <div class="health-bar">
-          <h2 class="your-hp"></h2>
-        </div>
-        <div class="enemy-health">
-          <h3 class="enemy-hp"></h3>
-        </div>
-      </div>
-      <div class="center flex">
+      <div class="container center grid">
         <div class="enemy-icon">
           <img class="enemy-png">
+        </div>
+        <div class="flex space">
+          <div class="health-bar">
+            <h2 class="your-hp">Health points: 0</h2>
+          </div>
+          <div class="enemy-health">
+            <h3 class="enemy-hp">Enemy health points: 0</h3>
+          </div>
+        </div>
+        <div class="wins-counter">
+          <p>Wins: 0</p>
         </div>
         <div class="attack-menu">
           <ul>

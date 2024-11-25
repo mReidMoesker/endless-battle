@@ -10,18 +10,17 @@
   vertical-align: baseline;
 }
 
-html {
-  font-size: 62.5%;
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: none;
-     -moz-text-size-adjust: none;
-          text-size-adjust: none;
+* {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
   min-height: 100svh;
   font-size: 1.6rem;
-  line-height: 1.5; 
+  line-height: 1.5;
+  background-color: gray; 
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
@@ -33,4 +32,129 @@ h1, h2, h3, h4 {
 
 p, h1, h2, h3, h4 {
   overflow-wrap: break-word;
+}
+
+.container {
+  width: min(100% - 30px, 1080px);
+  margin-inline: auto;
+  color: rgb(0, 8, 36);
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  min-height: 70vh; 
+  gap: 10px;
+  background-color: black;
+  padding: 10px;
+  position: relative; 
+}
+
+.wins-counter {
+  align-self: start;
+  background-color: rgb(19, 22, 31);
+  border: 2px solid gray;
+  width: 200px;
+  padding: 5px;
+  text-align: center;
+  color: white;
+}
+
+.attack-menu {
+  align-self: end; 
+  justify-self: start; 
+  background-color: rgb(19, 22, 31);
+  border: 5px solid rgb(62, 62, 62);
+  width: 300px;
+}
+
+.enemy-icon {
+  justify-self: center;
+}
+
+ul {
+  list-style: none; 
+  padding: 0;
+  margin: 0;
+}
+
+
+.space {
+  justify-content: space-between;
+}
+
+header {
+  height: 85px;
+  width: 100%;
+  background-color: gray;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    padding: 15px 20px;
+    margin: 10px 10px 10px 10px;
+    font-size: 2rem;
+    border-radius: 50px;
+  }
+}
+
+.header-content {
+  text-align: center;
+  margin-top: 0px;
+  h1 {
+    padding: 16.5px;
+  }
+}
+
+.power-button {
+  background-color: rgb(255, 79, 79);
+}
+
+.reset {
+  background-color: rgb(92, 255, 119);
+}
+
+.header {
+  text-align: center;
+}
+
+footer {
+  height: 40px;
+  width: 100%;
+  color: gray;
+  margin-bottom: 0;
+}
+
+.your-hp {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: white;
+}
+
+.enemy-hp {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: red;
+}
+
+.attack-menu {
+  background-color:rgb(19, 22, 31);
+  border: 5px solid rgb(62, 62, 62);
+  width: 300px;
+  ul {
+    li {
+      margin: 10px;
+      padding: 5px;
+      background-color: rgb(56, 56, 56);
+      button {
+        width: 100%;
+      }
+    }
+  }
 }
