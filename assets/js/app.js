@@ -9,8 +9,6 @@ let playerHP = 100;
 
 const speak = select('.speak');
 
-'use strict';
-
 function wait(ms){
   var start = new Date().getTime();
   var end = start;
