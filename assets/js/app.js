@@ -1,13 +1,27 @@
 'use strict';
 
-import topic, { select, selectAll, listen } from './utils';
+import { select, listen } from './utils';
 
 let enemyHP = 0;
 let enemyImage = './assets/img/sprite/nothing.png'
 let enemyDMG = 0;
 let playerHP = 100;
+let defending = false;
+let healthRestored = Math.floor(Math.random(randomHealEffect) * 10);
 
+const randomHealEffect = [1, 3, 5, 8, 10];
 const speak = select('.speak');
+const playerHPElement = select('.your-hp');
+const enemyHPElement = select('.enemy-hp');
+const enemyImgElement = select('.enemy-png');
+const winsCounter = select('.wins-counter p');
+
+function updateUI() {
+  playerHPElement.innerText = `HP: ${playerHP}`;
+  enemyHPElement.innerText = `Enemy HP: ${enemyHP}`;
+  enemyImgElement.src = enemyImage;
+  winsCounter.innerText = `Wins: ${wins}`;
+}
 
 function wait(ms){
   var start = new Date().getTime();
@@ -26,52 +40,68 @@ function addEnemy(hp, damageArray, imagePath) {
 
 function addKarl() {
   addEnemy(50, [8, 10, 15], './assets/img/sprites/Karl.png');
-  speak.innerText('KARL APPEARS!');
+  speak.innerText = 'KARL APPEARS!';
 }
 
 function addChort() {
   addEnemy(10, [2, 5, 8], './assets/img/sprites/Chort.png');
-  speak.innerText('A CHORT APPEARS');
+  speak.innerText = 'A CHORT APPEARS';
 }
 
 function addHippy() {
-  speak.innerText('A HIPPY APPEARS!');
+  speak.innerText = 'A HIPPY APPEARS!';
   wait(2000)
-  speak.innerText('"Peace and love, man!"');
+  speak.innerText = '"Peace and love, man!"';
   giveHP();
 }
 
 function addGreg() {
   addEnemy(40, [5, 10, 12], './assets/img/sprites/Greg.png');
-  speak.innerText('GREG APPEARS!');
+  speak.innerText = 'GREG APPEARS!';
 }
 
 function addSteve() {
   addEnemy(40, [5, 10, 12], './assets/img/sprites/Greg.png');
-  speak.innerText('STEVE APPEARS!');
+  speak.innerText = 'STEVE APPEARS!';
 }
 
 function addSlime() {
   addEnemy(80, [20, 25, 30], './assets/img/sprites/Slime.png');
-  speak.innerText('AN ANGRY SLIME APPEARS!')
+  speak.innerText = 'AN ANGRY SLIME APPEARS!';
 }
 
 function addHound() {
   addEnemy(15, [10, 12, 15], './assets/img/sprites/hound.png');
-  speak.innerText('A RABID DOG APPEARS!');
+  speak.innerText = 'A RABID DOG APPEARS!';
 }
 
 function addSpider() {
   addEnemy(25, [8, 10, 12], './assets/img/sprites/Greg.png');
-  speak.innerText('A GIANT SPIDER APPEARS!')
+  speak.innerText = 'A GIANT SPIDER APPEARS!'
 }
 
 function addPsycho() {
   addEnemy(25, [8, 10, 12], './assets/img/sprites/Greg.png');
-  speak.innerText('A CRAZY PSYCHO APPEARS!');
+  speak.innerText = 'A CRAZY PSYCHO APPEARS!';
 }
 
-function giveHP() {playerHP++ * 10}
+function giveHP() {
+  playerHP += 10; 
+  updateUI()
+}
+
+function attack() {
+  if (enemyHP > 0) {
+    enemyHP -= Math.floor(Math.random() * 15) + 5; // Random attack damage
+    speak.innerText = 'You attacked the enemy!';
+    if (enemyHP <= 0) {
+      wins++;
+      speak.innerText = 'Enemy defeated! A new enemy approaches!';
+      getNewEnemy();
+    }
+    updateUI();
+  }
+}
 
 function getNewEnemy() {
   const rand = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
@@ -86,6 +116,19 @@ function getNewEnemy() {
   else if (enemyChoice === 7) {addSpider()}
   else if (enemyChoice === 8) {addPsycho()}
   else {giveHP()}
+}
+
+function enemyAttack() {
+  let damage = defending ? Math.floor(enemyDMG / 2) : enemyDMG;
+  playerHP -= damage;
+  speak.innerText = `The enemy attacked you for ${damage} damage!`;
+  
+  if (playerHP <= 0) {
+    gameOver();
+  }
+  
+  defending = false;
+  updateUI();
 }
 
 function enemyBattle() {
@@ -106,7 +149,20 @@ function gamePlay() {
 
 function gameOver() {
   speak.innerText('GAME OVER');
+  wait(500);
   enemyHP = 0;
   enemyDMG = 0;
   playerHP = 0;
 }
+
+listen(select('button[type="run"]'), 'click', () => gameOver());
+listen(select('button[type="defend"]'), 'click', () => {
+  speak.innerText = 'You switch to defense! Enemy damage reduced!';
+  defending = true;
+  enemyAttack();
+});
+listen(select('button[type="attack"]'), 'click', () => attack());
+listen(select('button[type="health-regen"]') = () => {
+  playerHP += healthRestored;
+  speak.InnerText = `You healed ${healthRestored}hp!`;
+});
