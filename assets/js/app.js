@@ -1,6 +1,6 @@
 'use strict';
 
-import { select, listen } from './utils';
+import * as utils from './utils';
 
 let enemyHP = 0;
 let enemyImage = './assets/img/sprite/nothing.png'
@@ -10,11 +10,11 @@ let defending = false;
 let healthRestored = Math.floor(Math.random(randomHealEffect) * 10);
 
 const randomHealEffect = [1, 3, 5, 8, 10];
-const speak = select('.speak');
-const playerHPElement = select('.your-hp');
-const enemyHPElement = select('.enemy-hp');
-const enemyImgElement = select('.enemy-png');
-const winsCounter = select('.wins-counter p');
+const speak = utils.select('.speak');
+const playerHPElement = utils.select('.your-hp');
+const enemyHPElement = utils.select('.enemy-hp');
+const enemyImgElement = utils.select('.enemy-png');
+const winsCounter = utils.select('.wins-counter p');
 
 function updateUI() {
   playerHPElement.innerText = `HP: ${playerHP}`;
@@ -155,14 +155,14 @@ function gameOver() {
   playerHP = 0;
 }
 
-listen(select('button[type="run"]'), 'click', () => gameOver());
-listen(select('button[type="defend"]'), 'click', () => {
+utils.listen(select('button[type="run"]'), 'click', () => gameOver());
+utils.listen(select('button[type="defend"]'), 'click', () => {
   speak.innerText = 'You switch to defense! Enemy damage reduced!';
   defending = true;
   enemyAttack();
 });
-listen(select('button[type="attack"]'), 'click', () => attack());
-listen(select('button[type="health-regen"]') = () => {
+utils.listen(select('button[type="attack"]'), 'click', () => attack());
+utils.listen(select('button[type="health-regen"]') = () => {
   playerHP += healthRestored;
   speak.InnerText = `You healed ${healthRestored}hp!`;
 });
