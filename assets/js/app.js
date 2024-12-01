@@ -91,17 +91,21 @@ function giveHP() {
 }
 
 function attack() {
-  if (enemyHP > 0) {
-    enemyHP -= Math.floor(Math.random() * 15) + 5; // Random attack damage
-    speak.innerText = 'You attacked the enemy!';
-    if (enemyHP <= 0) {
-      wins++;
-      speak.innerText = 'Enemy defeated! A new enemy approaches!';
-      getNewEnemy();
-    }
-    updateUI();
+  if (enemyHP <= 0) return;
+
+  const damage = Math.floor(Math.random() * 15) + 5;
+  enemyHP -= damage;
+  speak.innerText = `You attacked the enemy! Enemy has ${Math.max(enemyHP, 0)} HP left!`;
+
+  if (enemyHP <= 0) {
+    wins++;
+    speak.innerText = 'Enemy defeated! A new enemy approaches!';
+    setTimeout(getNewEnemy, 1000);
   }
+
+  updateUI();
 }
+
 
 function getNewEnemy() {
   const rand = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
@@ -147,6 +151,12 @@ function gamePlay() {
   else {continueGame()}
 }
 
+function startGame() {
+  speak.innerText = 'You run into the dungeon...';
+  getNewEnemy();
+  updateUI();
+}
+
 function gameOver() {
   speak.innerText('GAME OVER');
   wait(500);
@@ -155,12 +165,20 @@ function gameOver() {
   playerHP = 0;
 }
 
+utils.listen('keydown', (event) => {
+  if (event.code = 'Space') {
+    event.preventDefault();
+    startGame();
+  }
+})
+
 utils.listen(select('button[type="run"]'), 'click', () => gameOver());
 utils.listen(select('button[type="defend"]'), 'click', () => {
   speak.innerText = 'You switch to defense! Enemy damage reduced!';
   defending = true;
   enemyAttack();
 });
+
 utils.listen(select('button[type="attack"]'), 'click', () => attack());
 utils.listen(select('button[type="health-regen"]') = () => {
   playerHP += healthRestored;

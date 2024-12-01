@@ -167,6 +167,9 @@ footer {
       button {
         width: 100%;
       }
+      button:hover {
+        background-color: rgb(99, 98, 98);
+      }
     }
   }
 }
