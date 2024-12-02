@@ -8,6 +8,6 @@ export function selectAll(selector, scope = document) {
   return [...scope.querySelectorAll(selector)];
 }
 
-export function listen(event, selector, callback) {
-  return selector.addEventListener(event, callback);
+export function listen(event, document, callback) {
+  return document.addEventListener(event, callback);
 }
