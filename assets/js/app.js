@@ -14,7 +14,7 @@ let enemyImage = './assets/img/sprite/nothing.png'
 let enemyDMG = 0;
 let playerHP = 100;
 let defending = false;
-let healthRestored = Math.floor(Math.random(randomHealEffect) * 10);
+let healthRestored = randomHealEffect[Math.floor(Math.random() * randomHealEffect.length)];
 
 function updateUI() {
   playerHPElement.innerText = `HP: ${playerHP}`;
@@ -23,12 +23,8 @@ function updateUI() {
   winsCounter.innerText = `Wins: ${wins}`;
 }
 
-function wait(ms){
-  var start = new Date().getTime();
-  var end = start;
-  while(end < start + ms) {
-    end = new Date().getTime();
- }
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function addEnemy(hp, damageArray, imagePath) {
@@ -108,8 +104,7 @@ function attack() {
 
 
 function getNewEnemy() {
-  const rand = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
-  let enemyChoice = Math.floor(Math.random(rand.length) * 10);
+  let enemyChoice = Math.floor(Math.random() * 10);
   if (enemyChoice === 0) {addKarl()}
   else if (enemyChoice === 1) {addChort()}
   else if (enemyChoice === 2) {addHippy()} 
@@ -158,7 +153,7 @@ function startGame() {
 }
 
 function gameOver() {
-  speak.innerText('GAME OVER');
+  speak.innerText = 'GAME OVER';
   wait(500);
   enemyHP = 0;
   enemyDMG = 0;
@@ -166,7 +161,7 @@ function gameOver() {
 }
 
 utils.listen('keydown', (event) => {
-  if (event.code = 'Space') {
+  if (event.code === 'Space') {
     event.preventDefault();
     startGame();
   }
@@ -181,7 +176,7 @@ utils.listen(select('button[type="defend"]'), 'click', () => {
   enemyAttack();
 });
 
-utils.listen(select('button[type="health-regen"]') = () => {
+utils.listen(select('button[type="health-regen"]'), 'click', () => {
   playerHP += healthRestored;
-  speak.InnerText = `You healed ${healthRestored}hp!`;
+  speak.innerText = `You healed ${healthRestored}hp!`;
 });
