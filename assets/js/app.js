@@ -1,6 +1,6 @@
 'use strict';
 
-import * as utils from './utils';
+import * as utils from './utils.js';
 
 let enemyHP = 0;
 let enemyImage = './assets/img/sprite/nothing.png'
