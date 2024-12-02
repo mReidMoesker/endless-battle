@@ -2,19 +2,19 @@
 
 import * as utils from './utils.js';
 
-let enemyHP = 0;
-let enemyImage = './assets/img/sprite/nothing.png'
-let enemyDMG = 0;
-let playerHP = 100;
-let defending = false;
-let healthRestored = Math.floor(Math.random(randomHealEffect) * 10);
-
 const randomHealEffect = [1, 3, 5, 8, 10];
 const speak = utils.select('.speak');
 const playerHPElement = utils.select('.your-hp');
 const enemyHPElement = utils.select('.enemy-hp');
 const enemyImgElement = utils.select('.enemy-png');
 const winsCounter = utils.select('.wins-counter p');
+
+let enemyHP = 0;
+let enemyImage = './assets/img/sprite/nothing.png'
+let enemyDMG = 0;
+let playerHP = 100;
+let defending = false;
+let healthRestored = Math.floor(Math.random(randomHealEffect) * 10);
 
 function updateUI() {
   playerHPElement.innerText = `HP: ${playerHP}`;
