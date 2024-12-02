@@ -172,14 +172,15 @@ utils.listen('keydown', (event) => {
   }
 })
 
+utils.listen(select('button[type="attack"]'), 'click', () => attack());
 utils.listen(select('button[type="run"]'), 'click', () => gameOver());
+
 utils.listen(select('button[type="defend"]'), 'click', () => {
   speak.innerText = 'You switch to defense! Enemy damage reduced!';
   defending = true;
   enemyAttack();
 });
 
-utils.listen(select('button[type="attack"]'), 'click', () => attack());
 utils.listen(select('button[type="health-regen"]') = () => {
   playerHP += healthRestored;
   speak.InnerText = `You healed ${healthRestored}hp!`;

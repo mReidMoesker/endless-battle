@@ -1,4 +1,4 @@
-export default 'Working with modules';
+export default 'modules';
 
 export function select(selector, scope = document) {
   return scope.querySelector(selector);
